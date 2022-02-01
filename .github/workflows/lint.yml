@@ -1,9 +1,23 @@
 name: Check Code Format
 
-on: [workflow_call]
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_call:
+    inputs:
+      testdir:
+        default: 'tests'
+        required: false
+	type: string
+      srcdir:
+        default: 'src'
+	required: false
+	type: string
 
 jobs:
-  build:
+  lint_in_actions:
 
     runs-on: ubuntu-latest
 
@@ -23,12 +37,12 @@ jobs:
 
     - name: isort
       run: |
-        isort . --diff --check
+        isort ${{ inputs.srcdir }} ${{ inputs.testdir }} --diff --check
 
     - name: flake8
       run: |
-        flake8 .
+        flake8 ${{ inputs.srcdir }} ${{ inputs.testdir }}
 
     - name: black
       run: |
-        black . --diff
+        black ${{ inputs.srcdir }} ${{ inputs.testdir }} --diff
