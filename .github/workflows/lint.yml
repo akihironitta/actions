@@ -10,11 +10,11 @@ on:
       testdir:
         default: 'tests'
         required: false
-	type: string
+        type: string
       srcdir:
         default: 'src'
-	required: false
-	type: string
+        required: false
+        type: string
 
 jobs:
   lint_in_actions:
