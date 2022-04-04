@@ -11,6 +11,18 @@ on:
         default: 'src'
         required: false
         type: string
+  workflow_dispatch:
+    inputs:
+      testdir:
+        description: 'test directory'
+        default: 'tests'
+        required: false
+        type: string
+      srcdir:
+        description: 'package directory'
+        default: 'src'
+        required: false
+        type: string
 
 jobs:
   lint_in_actions:
